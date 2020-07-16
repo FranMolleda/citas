@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import uuid from "uuid/v4";
 
 const Formulario = () => {
   //Crear state en citas
@@ -53,7 +54,17 @@ const Formulario = () => {
       //Ponemos un Return para que en caso de error no se siga ejecutando el código
       return;
     }
+
+    //Eliminar el mensaje previo de error
+    setError(false);
+
     //Asignar un ID
+    //damos al campo cita.id el valor que genera la librería uuid que nos hemos traido
+
+    cita.id = uuid();
+    console.log(cita);
+
+    //Instalamos la libreria uuid para generar un id a cada elemento de la colección
 
     //Crear Cita
 
