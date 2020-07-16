@@ -39,6 +39,7 @@ const Formulario = () => {
 
     //Validar
     //.trim() aunque el usuario agregue espacios al principio o al final los eliminará
+
     if (
       mascota.trim() === "" ||
       propietario.trim() === "" ||
