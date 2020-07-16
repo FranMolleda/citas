@@ -22,15 +22,24 @@ const Formulario = () => {
 
   //Extraer los valores
   //Hacemos destructuring para no tener que escribir citas.mascota, etc.
-  //Añadimos value a cada input con el nombre de cada input para después poder limpiarlo
+  //Añadimos value a cada input con el nombre de cada input para después poder resetearlo.
 
   const { mascota, propietario, fecha, hora, sintomas } = cita;
+
+  //Cuando el usuario presiona agregar cita
+
+  //e.preventDefault se utiliza para que no haga algo por defecto. En el caso de los formularios es para evitar que se vean los datos en el navegador.
+
+  const submitCita = (e) => {
+    e.preventDefautl();
+    console.log("Enviando...");
+  };
 
   return (
     <Fragment>
       <h2>Crear Cita</h2>
 
-      <form>
+      <form onSubmit={submitCita}>
         <label>Nombre Mascota</label>
         <input
           type="text"
