@@ -11,6 +11,10 @@ const Formulario = () => {
     sintomas: "",
   });
 
+  //Creamos un segundo estado para controlar los errores
+
+  const [error, setError] = useState(false);
+
   //Función que se ejecuta cada vez que escribimos en un Input
   //Hacemos una copia de cita, para que no elimine la información que vamos metiendo en los diferentes campos
   const handleChange = (e) => {
@@ -31,13 +35,37 @@ const Formulario = () => {
   //e.preventDefault se utiliza para que no haga algo por defecto. En el caso de los formularios es para evitar que se vean los datos en el navegador.
 
   const submitCita = (e) => {
-    e.preventDefautl();
-    console.log("Enviando...");
+    e.preventDefault();
+
+    //Validar
+    //.trim() aunque el usuario agregue espacios al principio o al final los eliminará
+    if (
+      mascota.trim() === "" ||
+      propietario.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === ""
+    ) {
+      //En caso de que haya un error, actualizamos el estado con setError y lo pasamos a true
+      setError(true);
+
+      //Ponemos un Return para que en caso de error no se siga ejecutando el código
+      return;
+    }
+    //Asignar un ID
+
+    //Crear Cita
+
+    //Reiniciar el form
   };
 
   return (
     <Fragment>
       <h2>Crear Cita</h2>
+
+      {error ? (
+        <p className="alerta-error"> Todos los campos son obligatorios</p>
+      ) : null}
 
       <form onSubmit={submitCita}>
         <label>Nombre Mascota</label>
