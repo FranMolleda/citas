@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import uuid from "uuid/v4";
 
-const Formulario = () => {
+const Formulario = ({ crearCita }) => {
   //Crear state en citas
   //Creamos las keys con el mismo nombre que la propiedad name de cada input
   const [cita, setCita] = useState({
@@ -67,6 +67,7 @@ const Formulario = () => {
     //Instalamos la libreria uuid para generar un id a cada elemento de la colección
 
     //Crear Cita
+    crearCita(cita);
 
     //Reiniciar el form
   };
