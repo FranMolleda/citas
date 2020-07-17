@@ -67,9 +67,18 @@ const Formulario = ({ crearCita }) => {
     //Instalamos la libreria uuid para generar un id a cada elemento de la colección
 
     //Crear Cita
+    //Pasamos como prop la función crearCita de App.js, arriba recibimos la prop y aquí la ejecutamos con el parametro cita
     crearCita(cita);
 
     //Reiniciar el form
+    //Una vez hecho todo lo anterior, le decimos que su nuevo estado seal el inicial (campos vacíos)
+    setCita({
+      mascota: "",
+      propietario: "",
+      fecha: "",
+      hora: "",
+      sintomas: "",
+    });
   };
 
   return (
