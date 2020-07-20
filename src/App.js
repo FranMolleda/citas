@@ -2,6 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import Formulario from "./components/Formulario";
 import Cita from "./components/Cita";
 
+//Importamos propTypes que ya viene por defecto en React. Abajo del todo antes del export default lo documentaremos.
+import PropTypes from "prop-types";
+
 function App() {
   //citas en LocalStorage.
   //Lo implementamos parra almacenar los datos y que no se pierdan al recargar. LocalStorage solo almacena strings, por eso lo pasamos a JSON
@@ -15,6 +18,8 @@ function App() {
   //UseEffect para realizar ciertas operaciones cuando el state cambia o cuando está listo
   //Al final ponemos array vacío para que se ejecute solo una vez. Si dentro de este array vacío, le metemos "citas", se ejecutará cuando este array se monte o cambie
   useEffect(() => {
+    //Le pasamos otra vez la variable citasIniciales (copiada de arriba), sólo para quen o salte el warning en consola:
+    let citasIniciales = JSON.parse(localStorage.getItem("citas"));
     if (citasIniciales) {
       localStorage.setItem("citas", JSON.stringify(citas));
     } else {
@@ -65,5 +70,9 @@ function App() {
     </Fragment>
   );
 }
+
+Formulario.propTypes = {
+  crearCita: PropTypes.func.isRequired,
+};
 
 export default App;
