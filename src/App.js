@@ -3,13 +3,23 @@ import Formulario from "./components/Formulario";
 import Cita from "./components/Cita";
 
 function App() {
+  //citas en LocalStorage.
+  //Lo implementamos parra almacenar los datos y que no se pierdan al recargar. LocalStorage solo almacena strings, por eso lo pasamos a JSON
+  let citasIniciales = JSON.parse(localStorage.getItem("citas"));
+  if (!citasIniciales) {
+    citasIniciales = [];
+  }
   //Array de citas donde almacenaremos las citas creadas
-  const [citas, setCitas] = useState([]);
+  const [citas, setCitas] = useState(citasIniciales);
 
   //UseEffect para realizar ciertas operaciones cuando el state cambia o cuando está listo
   //Al final ponemos array vacío para que se ejecute solo una vez. Si dentro de este array vacío, le metemos "citas", se ejecutará cuando este array se monte o cambie
   useEffect(() => {
-    console.log("listo");
+    if (citasIniciales) {
+      localStorage.setItem("citas", JSON.stringify(citas));
+    } else {
+      localStorage.setItem(citas, JSON.stringify([]));
+    }
   }, [citas]);
 
   //Función que recoja las citas que tengamos y agreguemos una nueva
